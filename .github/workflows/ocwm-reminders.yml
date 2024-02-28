@@ -32,8 +32,8 @@ jobs:
       with:
         script: |
         
-          const octokit = require('@octokit/core').Octokit;
-          const mygithub = new octokit({
+          import { Octokit } from "@octokit/core";
+          const mygithub = new Octokit({
             request: { fetch: fetch,},
             auth: process.env.MY_TOKEN
           });
