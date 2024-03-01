@@ -68,4 +68,4 @@ jobs:
             body: SLACK_MESSAGE,
           });
 
-          console.log('Post-Slack'));
+          console.log('Post-Slack');
