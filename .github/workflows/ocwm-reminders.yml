@@ -40,12 +40,16 @@ jobs:
 
           let targetLabel = encodeURIComponent(process.env.OCWM_LABEL);
 
+          console.log('targetLabel:' + targetLabel);
+          
           const { data: workMeetings } = await mygithub.request(`GET /repos/${process.env.OWNER}/${process.env.REPO}/issues?labels=${targetLabel}&per_page=1`, {
           })
 
           const issueNumber = workMeetings[0].number
           const newTitle = workMeetings[0].title;
           const issueDate = newTitle.replace(/Open Community Working Meeting /g, "");
+
+
           
           // Notify Slack
           const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK;
@@ -53,7 +57,9 @@ jobs:
             "issue": "https://github.com/${process.env.OWNER}/${process.env.REPO}/issues/${issueNumber}",
             "date": "${issueDate}"
           }`;
-
+          
+          console.log('Pre-Slack: ' + JSON.stringify(SLACK_MESSAGE));
+          
           await fetch(SLACK_WEBHOOK_URL, {
             method: 'POST',
             headers: {
@@ -61,3 +67,5 @@ jobs:
             },
             body: SLACK_MESSAGE,
           });
+
+          console.log('Post-Slack'));
