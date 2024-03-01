@@ -12,14 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Node 20
+    - name: Set up Node 18
       uses: actions/setup-node@v2
       with:
-        node-version: '20'
+        node-version: '18'
     - name: Install dependencies
       run: npm install @octokit/core@5.1.0 
     - name: Adding Issues
-      uses: actions/github-script@v7
+      uses: actions/github-script@v6
       env:
         PLACEHOLDER: '<!-- | [TOPIC] [IssuePRDiscussion] | [owner] | -->'
         OWNER: ${{ vars.ORGANISATION }}
