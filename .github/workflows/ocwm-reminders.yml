@@ -19,7 +19,7 @@ jobs:
         node-version: '20'
 
     - name: Install dependencies
-      run: npm install @octokit/core 
+      run: npm install @octokit/core@5.1.0
 
     - name: Send reminders
       uses: actions/github-script@v7
@@ -32,8 +32,8 @@ jobs:
       with:
         script: |
         
-          import { Octokit } from "@octokit/core";
-          const mygithub = new Octokit({
+          const octokit = require('@octokit/core').Octokit;
+          const mygithub = new octokit({
             request: { fetch: fetch,},
             auth: process.env.MY_TOKEN
           });
