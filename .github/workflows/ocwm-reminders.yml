@@ -59,6 +59,7 @@ jobs:
           }`;
           
           console.log('Pre-Slack: ' + JSON.stringify(SLACK_MESSAGE));
+          console.log('Pre-Slack: ' + SLACK_WEBHOOK_URL);
           
           await fetch(SLACK_WEBHOOK_URL, {
             method: 'POST',
